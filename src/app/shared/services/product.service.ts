@@ -32,12 +32,12 @@ export class ProductService {
   }
 
   updateProduct(product: Product) {
-    this.angularFirestore.collection<Product>('products').doc("S").set({
+    this.angularFirestore.collection<Product>('products').doc(product.id).set({
       name: product.name
     });
   }
 
   deleteProduct(product: Product) {
-    this.angularFirestore.collection<Product>('products').doc().delete();
+    this.angularFirestore.collection<Product>('products').doc(product.id).delete();
   }
 }

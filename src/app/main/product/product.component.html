@@ -1,8 +1,26 @@
+<h1>FirebaseNGXS-Demo</h1>
+<h2>Products list</h2>
 <ul class="products">
   <li *ngFor="let product of products | async">
-    <a (click)="setSelectedProduct(product)">
-      <span class="badge">{{product.id}}</span> name: {{product.name}}
-    </a>
+    <a (click)="setSelectedProduct(product)" style="cursor: pointer;">✏️</a>
+    <span class="badge">Id: {{product.id}} </span>| name: {{product.name}}
     <button class="delete" title="delete product" (click)="deleteProduct(product)">x</button>
   </li>
 </ul>
+
+<h2>Add products</h2>
+<form [formGroup]="productForm" (ngSubmit)="addProduct(productForm.value)">
+  <label>Name</label>
+  <input formControlName="name"/>
+  <button type="submit">Add</button>
+</form>
+
+<h2>Update products</h2>
+<div *ngIf=selectedProduct>
+  <a>Id: {{selectedProduct.id}}</a>
+  <form [formGroup]="productForm" (ngSubmit)="updateProduct(productForm.value)">
+    <label>Name</label>
+    <input formControlName="name"/>
+    <button type="submit">Update</button>
+  </form>
+</div>

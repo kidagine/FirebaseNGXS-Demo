@@ -1,1 +1,8 @@
-<p>product works!</p>
+<ul class="products">
+  <li *ngFor="let product of products | async">
+    <a (click)="setSelectedProduct(product)">
+      <span class="badge">{{product.id}}</span> name: {{product.name}}
+    </a>
+    <button class="delete" title="delete product" (click)="deleteProduct(product)">x</button>
+  </li>
+</ul>

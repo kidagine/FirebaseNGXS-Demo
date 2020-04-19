@@ -1,0 +1,34 @@
+{
+  "hosting": [
+    {
+      "target": "firebase-ngxs-demo",
+      "public": "dist/firebase-ngxs-demo",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    },
+    {
+      "target": "firebase-ngxs-demo",
+      "public": "dist/firebase-ngxs-demo",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "productsite-911f7": {
+      "hosting": {
+        "firebase-ngxs-demo": [
+          "productsite-911f7"
+        ]
+      }
+    }
+  }
+}

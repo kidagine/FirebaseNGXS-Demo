@@ -122,8 +122,13 @@
               "devServerTarget": "firebase-ngxs-demo:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "firebase-ngxs-demo"
 }

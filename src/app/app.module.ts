@@ -6,8 +6,11 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgxsModule } from '@ngxs/store';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { environment } from '../environments/environment';
 import { ProductComponent } from './main/product/product.component';
+import { ProductState } from './main/product/product.state';
 
 @NgModule({
   declarations: [AppComponent, ProductComponent],
@@ -18,9 +21,11 @@ import { ProductComponent } from './main/product/product.component';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    NgxsModule.forRoot([], {
-      developmentMode: !environment.production
-    })
+    NgxsModule.forRoot([
+      ProductState
+    ]),
+    NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsLoggerPluginModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

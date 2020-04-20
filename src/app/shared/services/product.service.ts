@@ -28,16 +28,16 @@ export class ProductService {
   }
 
   addProduct(product: Product) {
-    this.angularFirestore.collection<Product>('products').add(product);
+    return this.angularFirestore.collection<Product>('products').add(product);
   }
 
   updateProduct(product: Product) {
-    this.angularFirestore.collection<Product>('products').doc(product.id).set({
+    return this.angularFirestore.collection<Product>('products').doc(product.id).set({
       name: product.name
     });
   }
 
   deleteProduct(product: Product) {
-    this.angularFirestore.collection<Product>('products').doc(product.id).delete();
+    return this.angularFirestore.collection<Product>('products').doc(product.id).delete();
   }
 }

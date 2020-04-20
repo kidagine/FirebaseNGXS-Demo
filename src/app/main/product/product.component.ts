@@ -3,6 +3,9 @@ import { ProductService } from 'src/app/shared/services/product.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Product } from 'src/app/shared/models/product.model';
+import { Select,Store } from '@ngxs/store';
+import { GetProducts, AddProduct, UpdateProduct, DeleteProduct, SetSelectedProduct } from './product.action';
+import { ProductState } from './product.state';
 
 @Component({
   selector: 'app-product',
@@ -10,36 +13,35 @@ import { Product } from 'src/app/shared/models/product.model';
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
-
-  products: Observable<Product[]>
+  @Select(ProductState.getProductList) products: Observable<Product[]>;
   selectedProduct: Product;
 
   productForm = new FormGroup({
     name: new FormControl(''),
   });
 
-  constructor(private productService: ProductService) {
-    this.products = this.productService.getProducts();
+  constructor(private store: Store,private productService: ProductService) {
   }
 
   ngOnInit() {
+    this.store.dispatch(new GetProducts());
   }
 
   addProduct(product: Product) {
-    this.productService.addProduct(product);
+    this.store.dispatch(new AddProduct(product));
   }
 
   updateProduct(product: Product) {
     this.selectedProduct.name = product.name;
-    this.productService.updateProduct(this.selectedProduct);
+    this.store.dispatch(new UpdateProduct(this.selectedProduct));
   }
 
   deleteProduct(product: Product) {
-    this.productService.deleteProduct(product);
+    this.store.dispatch(new DeleteProduct(product));
   }
 
   setSelectedProduct(product: Product) {
     this.selectedProduct = product;
+    this.store.dispatch(new SetSelectedProduct(product));
   }
-
 }
